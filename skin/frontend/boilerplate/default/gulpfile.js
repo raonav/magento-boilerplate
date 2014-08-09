@@ -25,7 +25,7 @@
 // Load plugins
 var
   gulp         = require('gulp'),
-  less         = require('gulp-less'),
+  sass         = require('gulp-sass'),
   minifycss    = require('gulp-minify-css'),
   uglify       = require('gulp-uglify'),
   rimraf       = require('gulp-rimraf'),
@@ -50,9 +50,9 @@ var config = {
 // CSS
 gulp.task('css', function() {
   var stream = gulp
-    .src('src/less/style.less')
-    .pipe(less().on('error', notify.onError(function (error) {
-      return 'Error compiling LESS: ' + error.message;
+    .src('src/sass/style.scss')
+    .pipe(sass().on('error', notify.onError(function (error) {
+      return 'Error compiling SASS: ' + error.message;
     })))
     .pipe(gulp.dest('css'));
 
@@ -62,7 +62,7 @@ gulp.task('css', function() {
 
   return stream
     .pipe(gulp.dest('css'))
-    .pipe(notify({ message: 'Successfully compiled LESS' }));
+    .pipe(notify({ message: 'Successfully compiled SASS' }));
 });
 
 // JS
